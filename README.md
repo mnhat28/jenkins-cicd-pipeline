@@ -1,6 +1,6 @@
 # Simple Source Code Setup
 ## Source Code in this repo is sample, you can use others 
-web-app structure
+Web-app structure
 ```
 my-web-app/
 │
