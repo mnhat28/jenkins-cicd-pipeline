@@ -56,3 +56,15 @@ Install K3s cluster
 ```
 https://docs.k3s.io/quick-start
 ```
+After install K3s cluster, use following command to check cluster's status
+```
+sudo kubectl get nodes
+```
+
+It will return the result
+```
+NAME     STATUS   ROLES           AGE     VERSION
+ubuntu   Ready    control-plane   3h11m   v1.34.6+k3s1
+ubuntu1  Ready    <none>          3h10m   v1.34.6+k3s1
+ubuntu2  Ready    <none>          3h10m   v1.34.6+k3s1
+```
