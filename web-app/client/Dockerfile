@@ -1,14 +1,14 @@
-# Dùng nginx để serve web tĩnh
+# Use Nginx for static web
 FROM nginx:alpine
 
-# Xóa config mặc định (optional)
+# remove default config (optional)
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy toàn bộ file HTML, JS vào nginx
+# Copy file HTML, JS into nginx
 COPY . /usr/share/nginx/html
 
-# Mở port 80
+# Open port
 EXPOSE 80
 
-# Chạy nginx
+# Run nginx
 CMD ["nginx", "-g", "daemon off;"]

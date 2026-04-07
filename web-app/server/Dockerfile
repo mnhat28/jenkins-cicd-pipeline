@@ -1,20 +1,20 @@
 # Base image
 FROM node:18
 
-# Thư mục làm việc trong container
+# Working folder in container 
 WORKDIR /app
 
-# Copy file package trước để tối ưu cache
+# Copy file package 
 COPY package*.json ./
 
-# Cài dependencies
+# Install dependencies
 RUN npm install
 
-# Copy toàn bộ source code server
+# Copy entire source code server
 COPY . .
 
-# Mở port
+# Open port
 EXPOSE 5000
 
-# Chạy server
+# Run server
 CMD ["node", "server.js"]

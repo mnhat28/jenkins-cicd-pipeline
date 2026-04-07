@@ -13,7 +13,7 @@ services:
     volumes:
       - mongo-data:/data/db
 
-    # ✅ thêm healthcheck
+    # ✅ add healthcheck
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
@@ -27,7 +27,7 @@ services:
     ports:
       - "5000:5000"
 
-    # ✅ chỉ chạy khi mongo healthy
+    # ✅ only run when mongo is healthy
     depends_on:
       mongo:
         condition: service_healthy

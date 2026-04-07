@@ -5,7 +5,7 @@ const connectDB = async () => {
 
     while (retries) {
         try {
-            await mongoose.connect("mongodb://nhat:123456@mongo:27017/web-app");
+            await mongoose.connect("mongodb://nhat:123456@mongo:27017/web-app?authSource=admin");
             console.log("MongoDB connected");
             break;
         } catch (err) {
