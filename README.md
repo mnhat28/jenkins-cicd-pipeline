@@ -1,7 +1,4 @@
 # Simple Source Code Setup
--------------------------------------------------------------------
-Source Code in this repo is sample, you can use others 
--------------------------------------------------------------------
 Web-app structure
 ```
 my-web-app/
