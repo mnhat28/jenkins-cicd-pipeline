@@ -1,9 +1,9 @@
-# Install MongoDB Community Edition on Ubuntu
+Install MongoDB Community Edition on Ubuntu
 ```
 https://www.mongodb.com/docs/v7.0/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu
 ```
 
-# Create MongoDB user
+Create MongoDB user
 ```javascript
 use <database name>
 db.createUser({
@@ -14,22 +14,12 @@ db.createUser({
 show users
 ```
 
-# File db.js at web-app/server/config/db.js, modify the parameters to match what has been declared in MongoDB
+File db.js at web-app/server/config/db.js, modify the parameters to match what has been declared in MongoDB
 ```
 await mongoose.connect("mongodb://<username>:<password>@127.0.0.1:27017/web-app");
 ```
 
-# Install K3s cluster
-```
-https://docs.k3s.io/quick-start
-```
-
-# File db.js at web-app/server/config/db.js, modify the parameters to match what has been declared in MongoDB
-```
-await mongoose.connect("mongodb://<username>:<password>@127.0.0.1:27017/web-app");
-```
-
-# Install K3s cluster
+Install K3s cluster
 ```
 https://docs.k3s.io/quick-start
 ```
