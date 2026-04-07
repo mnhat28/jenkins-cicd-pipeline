@@ -89,6 +89,7 @@ ubuntu1  Ready    <none>          3h10m   v1.34.6+k3s1
 ubuntu2  Ready    <none>          3h10m   v1.34.6+k3s1
 ```
 # Pipeline
+```mermaid
 flowchart TD
     A[Developer pushes code to GitHub] --> B[Jenkins CI/CD]
 
