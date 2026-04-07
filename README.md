@@ -61,7 +61,7 @@ MONGO_INITDB_ROOT_PASSWORD: <password>
 ```
 And of course, the db.js file must also contain the same username and password 
 ```
-await mongoose.connect("mongodb://<username>:<password>@mongo:27017/web-app?authSource=admi>
+await mongoose.connect("mongodb://<username>:<password>@mongo:27017/web-app?authSource=admin>
 ```
 Finally, at the folder having docker-compose.yml, run
 ```
@@ -88,3 +88,21 @@ ubuntu   Ready    control-plane   3h11m   v1.34.6+k3s1
 ubuntu1  Ready    <none>          3h10m   v1.34.6+k3s1
 ubuntu2  Ready    <none>          3h10m   v1.34.6+k3s1
 ```
+# Pipeline
+flowchart TD
+    A[Developer pushes code to GitHub] --> B[Jenkins CI/CD]
+
+    B --> C[Build Docker images for Server & Client]
+    C --> D[Push images to Docker Hub]
+
+    D --> E{Deployment target?}
+
+    E -->|Single server| F[Server with Docker & Docker Compose]
+    F --> G[Pull images from Docker Hub]
+    G --> H[Run containers using docker-compose.yml]
+
+    E -->|K3s cluster| I[K3s nodes]
+    I --> J[Pull images from Docker Hub]
+    J --> K[Apply Kubernetes YAML: Deployment + Service + Ingress]
+    K --> L[Pods running & exposed via Ingress]
+
