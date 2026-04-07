@@ -1,4 +1,28 @@
-# Simple Source Code Setup 
+# Simple Source Code Setup
+## Source Code in this repo is sample, you can use others 
+web-app structure
+```
+my-web-app/
+│
+├── server/
+│   ├── server.js
+│   ├── models/User.js
+│   └── config/db.js
+│
+├── client/
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   └── script.js
+│
+└── package.json
+```
+
+Install Back-end(Node.js + Express)
+```
+npm init -y
+npm install express mongoose cors body-parser
+```
 
 Install MongoDB Community Edition on Ubuntu
 ```
@@ -16,11 +40,16 @@ db.createUser({
 show users
 ```
 
-File db.js at web-app/server/config/db.js, modify the parameters to match what has been declared in MongoDB
+Modify db.js at web-app/server/config/db.js
 ```
 await mongoose.connect("mongodb://<username>:<password>@127.0.0.1:27017/web-app");
 ```
 
+Finally, in folder "server"  run the following command to run
+```
+mongod
+node server/server.js
+```
 
 # Pipeline
 Install K3s cluster
