@@ -51,7 +51,7 @@ mongod
 node server/server.js
 ```
 
-# Pipeline
+# Install K3s cluster
 Install K3s cluster
 ```
 https://docs.k3s.io/quick-start
