@@ -71,17 +71,4 @@ After run the container, use following to access the mongdoDB
 ```
 docker exec -it mongo mongosh -u <username> -p <password> --authenticationDatabase admin
 ```
-# CI/CD Pipeline Flow
-```mermaid
-flowchart LR
-    A[Developer Code] --> B[GitHub Repository];
-    B --> C[GitHub Actions CI];
-    C --> D[Build Docker Images];
-    D --> E[Run Tests];
-    E --> F[Push to Docker Hub];
-    F --> G[Deploy Stage];
-    G --> H1[Docker Compose];
-    G --> H2[Kubernetes K3s];
-    H1 --> I[Web App Running];
-    H2 --> I;
-    I --> J[User Access];
+
