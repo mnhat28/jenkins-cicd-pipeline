@@ -1,5 +1,21 @@
-# Simple Source Code 
-Web-app structure
+# Overview
+
+This project implements a simple web application based on a client–server architecture.
+
+- The **client** provides user interfaces for registration and login.
+- The **server** exposes RESTful APIs to handle user requests and authentication logic.
+- The **database** stores user information.
+
+Technologies Used
+
+- **Frontend:** HTML, JavaScript
+- **Backend:** Node.js, Express
+- **Database:** MongoDB, Mongoose
+- **Containerization:** Docker
+- **Orchestration:** Docker Compose
+- **CI/CD:** GitHub Actions
+
+# Web-app structure
 ```
 my-web-app/
 │
@@ -17,22 +33,6 @@ my-web-app/
 │   └── script.js
 ```
 
-# Install K3s cluster
-Install K3s cluster
-```
-https://docs.k3s.io/quick-start
-```
-After install K3s cluster, use following command to check cluster's status
-```
-sudo kubectl get nodes
-```
-It will return the result
-```
-NAME     STATUS   ROLES           AGE     VERSION
-ubuntu   Ready    control-plane   3h11m   v1.34.6+k3s1
-ubuntu1  Ready    <none>          3h10m   v1.34.6+k3s1
-ubuntu2  Ready    <none>          3h10m   v1.34.6+k3s1
-```
 # Docker
 Install Docker
 ```
@@ -72,3 +72,19 @@ After run the container, use following to access the mongdoDB
 docker exec -it mongo mongosh -u <username> -p <password> --authenticationDatabase admin
 ```
 
+# Prepare the target cluster (K3s cluster)
+Install K3s cluster by following the steps at
+```
+https://docs.k3s.io/quick-start
+```
+After install K3s cluster, use following command to check cluster's status
+```
+sudo kubectl get nodes
+```
+It will return the result
+```
+NAME     STATUS   ROLES           AGE     VERSION
+ubuntu   Ready    control-plane   3h11m   v1.34.6+k3s1
+ubuntu1  Ready    <none>          3h10m   v1.34.6+k3s1
+ubuntu2  Ready    <none>          3h10m   v1.34.6+k3s1
+```
