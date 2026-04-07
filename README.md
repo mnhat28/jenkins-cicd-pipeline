@@ -68,3 +68,26 @@ ubuntu   Ready    control-plane   3h11m   v1.34.6+k3s1
 ubuntu1  Ready    <none>          3h10m   v1.34.6+k3s1
 ubuntu2  Ready    <none>          3h10m   v1.34.6+k3s1
 ```
+
+# Docker
+Install Docker
+```
+sudo apt install docker.io -y
+docker --version
+```
+Install Docker Compose  
+1. To download and install the Docker Compose CLI plugin, run
+```
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v5.0.1/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+```
+2. Apply executable permissions to the binary
+```
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+```
+3. Test the installation
+```
+docker compose version
+```
+

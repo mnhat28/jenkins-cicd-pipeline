@@ -1,12 +1,18 @@
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
-    try {
-        await mongoose.connect("mongodb://nhat:123456@127.0.0.1:27017/web-app");
-        console.log("MongoDB connected");
-    } catch (err) {
-        console.error(err);
-        process.exit(1);
+    let retries = 5;
+
+    while (retries) {
+        try {
+            await mongoose.connect("mongodb://nhat:123456@mongo:27017/web-app");
+            console.log("MongoDB connected");
+            break;
+        } catch (err) {
+            console.log("MongoDB not ready, retrying...");
+            retries--;
+            await new Promise(res => setTimeout(res, 5000));
+        }
     }
 };
 
