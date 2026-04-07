@@ -63,6 +63,10 @@ And of course, the db.js file must also contain the same username and password
 ```
 await mongoose.connect("mongodb://<username>:<password>@mongo:27017/web-app?authSource=admi>
 ```
+Finally, at the folder having docker-compose.yml, run
+```
+docker compose up --build
+```
 After run the container, use following to access the mongdoDB
 ```
 docker exec -it mongo mongosh -u <username> -p <password> --authenticationDatabase admin
