@@ -17,7 +17,8 @@ my-web-app/
 └── package.json
 ```
 
-Install Back-end(Node.js + Express). Go to the 'web-app' folder and install dependencies:
+Install Back-end(Node.js + Express)  
+Go to the 'web-app' folder and install dependencies:
 ```
 npm init -y
 npm install express mongoose cors body-parser
