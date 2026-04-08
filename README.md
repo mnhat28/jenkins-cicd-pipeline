@@ -150,7 +150,7 @@ flowchart TD
     K --> L[Pods running & exposed via Ingress]
 ```
 
-# NOTE: Jenkins Credentials Configuration
+### NOTE: Jenkins Credentials Configuration
 When setting up CI/CD with Jenkins, properly configuring credentials is essential to ensure secure and successful integration with external services such as GitHub and Docker Hub.  
 
 GitHub (SSH Access):
