@@ -1,4 +1,4 @@
-//K3s
+//docker compose
 pipeline {
     agent any
 
@@ -20,8 +20,10 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker build -t $SERVER_IMAGE ./server'
-                sh 'docker build -t $CLIENT_IMAGE ./client'
+                script {
+                    sh 'docker build -t $SERVER_IMAGE ./server'
+                    sh 'docker build -t $CLIENT_IMAGE ./client'
+                }
             }
         }
 
@@ -44,14 +46,13 @@ pipeline {
             }
         }
 
-        /*
-        stage('Deploy to K3s') {
+        stage('Deploy (Docker Compose)') {
             steps {
                 sh '''
-                kubectl apply -f k8s/
+                docker compose pull
+                docker compose up -d
                 '''
             }
         }
-        */
     }
 }
