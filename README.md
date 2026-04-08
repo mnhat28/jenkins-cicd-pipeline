@@ -160,7 +160,7 @@ Use an SSH key pair to allow Jenkins to clone private repositories. The public k
 2. Docker Hub Authentication:
 Store your Docker Hub credentials in Jenkins using the Username with Password type. You can either use your Docker Hub password or an Access Token (recommended for security). Ensure the credentials have sufficient permissions (read/write) to push images successfully.
 
-###### Create new repository in Docker Hub
+### Create new repository in Docker Hub
 ```
 web-app-server
 web-app-client
