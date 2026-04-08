@@ -88,6 +88,25 @@ ubuntu   Ready    control-plane   3h11m   v1.34.6+k3s1
 ubuntu1  Ready    <none>          3h10m   v1.34.6+k3s1
 ubuntu2  Ready    <none>          3h10m   v1.34.6+k3s1
 ```
+#Install Jenkins
+Visit the following website to install
+```
+https://www.jenkins.io/doc/book/installing/linux/
+```
+Make sure that Jenkins is started
+```
+sudo systemctl enable jenkins
+sudo systemctl start jenkins 
+sudo systemctl status jenkins
+```
+Take admin password
+```
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+Copy and paste it in website
+```
+http://localhost:8080
+```
 # Pipeline
 ```mermaid
 flowchart TD
