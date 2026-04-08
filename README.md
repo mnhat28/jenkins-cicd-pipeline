@@ -109,6 +109,7 @@ http://localhost:8080
 ```
 Next, you need to complete a few setup steps before moving on to pipeline configuration.
   
+![Jenkins installation step](docs/jenkins.png)
 After completing the installation steps, proceed to create the pipeline
 ```
 Jenkins Dashboard → New Item → Pipeline
