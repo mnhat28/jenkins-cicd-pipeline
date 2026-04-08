@@ -103,9 +103,22 @@ Take admin password
 ```
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
-Copy and paste it in website
+Copy and paste it in website for required authentication as admin
 ```
 http://localhost:8080
+```
+Next, you need to complete a few setup steps before moving on to pipeline configuration.
+  
+After completing the installation steps, proceed to create the pipeline
+```
+Jenkins Dashboard → New Item → Pipeline
+       ↓
+Definition: Pipeline script from SCM
+SCM: Git
+Repository URL: git@github.com:username/repo.git
+Credentials: <SSH key between Jenkins and Github>
+Branch: main (or can be another branch)
+Script Path: Jenkinsfile (default)
 ```
 # Pipeline
 ```mermaid
