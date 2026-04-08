@@ -3,9 +3,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = 'dockerhub-authentication'
-        DOCKERHUB_REPO = 'minhnhat28'
-        SERVER_IMAGE = "${DOCKERHUB_REPO}/web-app-server"
+        DOCKERHUB_CREDENTIALS = 'dockerhub-authentication' // ID credential using to access Docker Hub, create in "Credentials"
+        DOCKERHUB_REPO = 'minhnhat28' // Docker Hub username
+        SERVER_IMAGE = "${DOCKERHUB_REPO}/web-app-server" 
         CLIENT_IMAGE = "${DOCKERHUB_REPO}/web-app-client"
     }
 

@@ -131,6 +131,7 @@ sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 ```
 # Pipeline
+### CI/CD workflow
 ```mermaid
 flowchart TD
     A[Developer pushes code to GitHub] --> B[Jenkins CI/CD]
@@ -153,11 +154,15 @@ flowchart TD
 ### NOTE: Jenkins Credentials Configuration
 When setting up CI/CD with Jenkins, properly configuring credentials is essential to ensure secure and successful integration with external services such as GitHub and Docker Hub.  
 
-GitHub (SSH Access):
+1. GitHub (SSH Access):
 Use an SSH key pair to allow Jenkins to clone private repositories. The public key must be added to your GitHub account, while the private key is stored securely in Jenkins credentials (e.g., jenkins-github). Additionally, make sure the Git host key is added to the known_hosts file to avoid SSH verification errors.  
 
-Docker Hub Authentication:
+2. Docker Hub Authentication:
 Store your Docker Hub credentials in Jenkins using the Username with Password type. You can either use your Docker Hub password or an Access Token (recommended for security). Ensure the credentials have sufficient permissions (read/write) to push images successfully.
 
-
+###### Create new repository in Docker Hub
+```
+web-app-server
+web-app-client
+```
 
