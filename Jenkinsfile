@@ -11,7 +11,6 @@ pipeline {
 
     stages {
 
-
         stage('Build Docker Images') {
             steps {
                 sh 'docker build -t $SERVER_IMAGE ./web-app/server'

@@ -11,19 +11,10 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                git credentialsId: 'jenkins-github',
-                    url: 'git@github.com:mnhat28/jenkins-cicd-pipeline.git'
-            }
-        }
-
         stage('Build Docker Images') {
             steps {
-                script {
-                    sh 'docker build -t $SERVER_IMAGE ./server'
-                    sh 'docker build -t $CLIENT_IMAGE ./client'
-                }
+                sh 'docker build -t $SERVER_IMAGE ./web-app/server'
+                sh 'docker build -t $CLIENT_IMAGE ./web-app/client'
             }
         }
 
@@ -45,7 +36,7 @@ pipeline {
                 sh 'docker push $CLIENT_IMAGE'
             }
         }
-
+        /*
         stage('Deploy (Docker Compose)') {
             steps {
                 sh '''
@@ -54,5 +45,6 @@ pipeline {
                 '''
             }
         }
+        */
     }
 }

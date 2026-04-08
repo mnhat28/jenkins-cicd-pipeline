@@ -121,6 +121,15 @@ Credentials: <SSH key between Jenkins and Github>
 Branch: main (or can be another branch)
 Script Path: Jenkinsfile (default)
 ```
+Add SSH Github's host key to trusted list to avoid authentication warnings
+```
+ssh-keyscan github.com >> ~/.ssh/known_hosts
+```
+Add the Jenkins user to the Docker group and restart Jenkins to apply the permission changes
+```
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+```
 # Pipeline
 ```mermaid
 flowchart TD
@@ -139,4 +148,15 @@ flowchart TD
     I --> J[Pull images from Docker Hub]
     J --> K[Apply Kubernetes YAML: Deployment + Service + Ingress]
     K --> L[Pods running & exposed via Ingress]
+```
+
+# NOTE: Jenkins Credentials Configuration
+When setting up CI/CD with Jenkins, properly configuring credentials is essential to ensure secure and successful integration with external services such as GitHub and Docker Hub.
+
+GitHub (SSH Access):
+Use an SSH key pair to allow Jenkins to clone private repositories. The public key must be added to your GitHub account, while the private key is stored securely in Jenkins credentials (e.g., jenkins-github). Additionally, make sure the Git host key is added to the known_hosts file to avoid SSH verification errors.
+Docker Hub Authentication:
+Store your Docker Hub credentials in Jenkins using the Username with Password type. You can either use your Docker Hub password or an Access Token (recommended for security). Ensure the credentials have sufficient permissions (read/write) to push images successfully.
+
+
 
