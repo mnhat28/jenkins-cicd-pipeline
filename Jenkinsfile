@@ -14,8 +14,8 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker build -t $SERVER_IMAGE ./server'
-                sh 'docker build -t $CLIENT_IMAGE ./client'
+                sh 'docker build -t $SERVER_IMAGE ./web-app/server'
+                sh 'docker build -t $CLIENT_IMAGE ./web-app/client'
             }
         }
 
