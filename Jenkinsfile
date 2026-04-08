@@ -11,12 +11,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                git credentialsId: 'jenkins-github',
-                    url: 'git@github.com:mnhat28/jenkins-cicd-pipeline.git'
-            }
-        }
 
         stage('Build Docker Images') {
             steps {
