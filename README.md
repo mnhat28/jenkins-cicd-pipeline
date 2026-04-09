@@ -165,4 +165,34 @@ Store your Docker Hub credentials in Jenkins using the Username with Password ty
 web-app-server
 web-app-client
 ```
-
+### Take the kubeconfig file from k3s cluster
+1. SSH control-plane
+```
+ssh user@<IP-control-plane>
+```
+2. Copy
+```
+scp user@<IP-control-plane>:/etc/rancher/k3s/k3s.yaml .
+```
+3. Find and config 
+```
+server: https://<IP-control-plane>:6443
+```
+4. Use kubeconfig
+```
+export KUBECONFIG=/path/to/k3s.yaml
+```
+or
+```
+mkdir -p ~/.kube
+cp k3s.yaml ~/.kube/config
+```
+5. Test connection
+```
+kubectl get nodes
+```
+### Create Credentials 
+```
+Jenkins → Manage Jenkins → Credentials → Global → Add Credentials → Secret file
+```
+Then upload kubeconfig file

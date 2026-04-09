@@ -37,6 +37,19 @@ pipeline {
             }
         }
 
+        stage('Deploy to K3s') {
+            steps {
+                withCredentials([string(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_CONTENT')]) {
+                    // Write the secret text to tmp file
+                    writeFile file: '/tmp/k3s.yaml', text: env.KUBECONFIG_CONTENT
+                    sh '''
+                        export KUBECONFIG=/tmp/k3s.yaml
+                        kubectl apply -f k3s/
+                    '''
+                }
+            }
+        }
+
         /*
         stage('Deploy to K3s') {
             steps {
