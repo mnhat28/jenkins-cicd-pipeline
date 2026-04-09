@@ -136,13 +136,13 @@ sudo systemctl restart jenkins
 
 ### CI/CD workflow
 ```mermaid
-fflowchart TD
+flowchart TD
     A[Developer pushes code to GitHub] --> B[Jenkins CI/CD]
     B --> C[Build Docker images for Server & Client]
     C --> D[Push images to Docker Hub]
-    D --> I[K3s cluster]
-    I --> J[Pull images from Docker Hub]
-    J --> K[Apply Kubernetes YAML: Deployment + Service]
+    D --> E[K3s cluster]
+    E --> F[Pull images from Docker Hub]
+    F --> G[Apply Kubernetes YAML: Deployment + Service]
 ```
 
 ### NOTE: Jenkins Credentials Configuration
