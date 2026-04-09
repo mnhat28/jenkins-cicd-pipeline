@@ -32,7 +32,16 @@ my-web-app/
 │   ├── register.html
 │   └── script.js
 ```
-
+# K3s structure 
+```
+server/
+├── server-deployment.yaml
+├── server-service.yaml
+├── client-deployment.yaml
+├── client-service.yaml
+├── mongo-deployment.yaml
+└── mongo-service.yaml
+```
 # Docker
 Install Docker
 ```
