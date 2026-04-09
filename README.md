@@ -12,7 +12,7 @@ Technologies Used
 - **Backend:** Node.js, Express
 - **Database:** MongoDB, Mongoose
 - **Containerization:** Docker
-- **Orchestration:** Docker Compose
+- **Orchestration:** K3s 
 - **CI/CD:** GitHub Actions
 
 # Web-app structure
@@ -61,7 +61,7 @@ MONGO_INITDB_ROOT_PASSWORD: <password>
 ```
 And of course, the db.js file must also contain the same username and password 
 ```
-await mongoose.connect("mongodb://<username>:<password>@mongo:27017/web-app?authSource=admin>
+await mongoose.connect("mongodb://nhat:123456@mongo:27017/web-app?authSource=admin");
 ```
 Finally, at the folder having docker-compose.yml, run
 ```
@@ -131,24 +131,18 @@ sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 ```
 # Pipeline
+### Topology
+![Topology](docs/topology.png)
+
 ### CI/CD workflow
 ```mermaid
-flowchart TD
+fflowchart TD
     A[Developer pushes code to GitHub] --> B[Jenkins CI/CD]
-
     B --> C[Build Docker images for Server & Client]
     C --> D[Push images to Docker Hub]
-
-    D --> E{Deployment target?}
-
-    E -->|Single server| F[Server with Docker & Docker Compose]
-    F --> G[Pull images from Docker Hub]
-    G --> H[Run containers using docker-compose.yml]
-
-    E -->|K3s cluster| I[K3s nodes]
+    D --> I[K3s cluster]
     I --> J[Pull images from Docker Hub]
-    J --> K[Apply Kubernetes YAML: Deployment + Service + Ingress]
-    K --> L[Pods running & exposed via Ingress]
+    J --> K[Apply Kubernetes YAML: Deployment + Service]
 ```
 
 ### NOTE: Jenkins Credentials Configuration
@@ -170,11 +164,11 @@ web-app-client
 ```
 ssh user@<IP-control-plane>
 ```
-2. Copy
+2. Copy 
 ```
 scp user@<IP-control-plane>:/etc/rancher/k3s/k3s.yaml .
 ```
-3. Find and config 
+3. Then, go to the copied k3s.yaml and replace 
 ```
 server: https://<IP-control-plane>:6443
 ```
@@ -192,7 +186,32 @@ cp k3s.yaml ~/.kube/config
 kubectl get nodes
 ```
 ### Create Credentials 
+First, encode it in Base64 and content in 1 line
 ```
-Jenkins → Manage Jenkins → Credentials → Global → Add Credentials → Secret file
+base64 -w0 k3s.yaml > k3s.yaml.base64
 ```
-Then upload kubeconfig file
+Create credentials
+```
+Jenkins → Manage Jenkins → Credentials → Global → Add Credentials → Secret text
+```
+Then upload kubeconfig content in k3s.yaml.base64
+### Run the workflow
+#### Manual
+Access Jenkins, click "Build Now" to run it manually
+
+#### Automatic
+Trigger Jenkins Pipeline via Webhook
+##### Configure Jenkins Job
+1. Go to Job → Configure → Build Triggers
+2. Check “Trigger builds remotely (e.g., from scripts)”
+3. Set a Token, e.g., my-secret-token
+4. Jenkins build URL:
+```
+http://<jenkins-host>:8080/job/<job-name>/build?token=my-secret-token
+```
+##### Configure Webhook on GitHub
+1. Go to Repository → Settings → Webhooks → Add webhook
+2. Payload URL: use Jenkins URL from above
+3. Content type: application/json
+4. Trigger event: Just the push event
+5. Save
