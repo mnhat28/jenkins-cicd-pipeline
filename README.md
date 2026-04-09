@@ -73,10 +73,8 @@ docker exec -it mongo mongosh -u <username> -p <password> --authenticationDataba
 ```
 
 # Prepare the target cluster (K3s cluster)
-Install K3s cluster by following the steps at
-```
-https://docs.k3s.io/quick-start
-```
+Install K3s cluster by following the steps at [K3s](https://docs.k3s.io/quick-start)  
+
 After install K3s cluster, use following command to check cluster's status
 ```
 sudo kubectl get nodes
@@ -89,10 +87,8 @@ ubuntu1  Ready    <none>          3h10m   v1.34.6+k3s1
 ubuntu2  Ready    <none>          3h10m   v1.34.6+k3s1
 ```
 # Install Jenkins
-Visit the following website to install
-```
-https://www.jenkins.io/doc/book/installing/linux/
-```
+Visit the following website [Jenkins](https://www.jenkins.io/doc/book/installing/linux/) to install  
+
 Make sure that Jenkins is started
 ```
 sudo systemctl enable jenkins
@@ -215,3 +211,16 @@ http://<jenkins-host>:8080/job/<job-name>/build?token=my-secret-token
 3. Content type: application/json
 4. Trigger event: Just the push event
 5. Save
+### Result
+After run workflow, use
+```
+sudo kubectl get pods
+```
+It will display
+```
+NAME                          READY   STATUS    RESTARTS   AGE
+mongo-7d47b68bd6-zxjf5        1/1     Running   0          26s
+web-client-7bf5b8cf6b-kz95n   1/1     Running   0          26s
+web-server-5bcdf79c7d-kmvzt   1/1     Running   0          26s
+```
+ 
