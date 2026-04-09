@@ -41,10 +41,12 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_CONTENT')]) {
                     // Write the secret text to tmp file
-                    writeFile file: '/tmp/k3s.yaml', text: env.KUBECONFIG_CONTENT
+                    //writeFile file: '/tmp/k3s.yaml', text: env.KUBECONFIG_CONTENT
                     sh '''
+                        echo $KUBECONFIG_CONTENT | base64 --decode > /tmp/k3s.yaml
                         export KUBECONFIG=/tmp/k3s.yaml
                         kubectl apply -f k3s/
+                        rm /tmp/k3s.yaml
                     '''
                 }
             }
