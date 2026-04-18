@@ -14,7 +14,7 @@ async function startServer() {
     try {
         await connectDB();
 
-        // routes chỉ start sau khi DB OK
+        
         app.post("/api/register", async (req, res) => {
             try {
                 const { username, password } = req.body;
