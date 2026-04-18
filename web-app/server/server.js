@@ -7,37 +7,51 @@ const User = require("./models/User");
 
 const app = express();
 
-// middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// connect DB
-connectDB();
+async function startServer() {
+    try {
+        await connectDB();
 
-// API đăng ký
-app.post("/api/register", async (req, res) => {
-    const { username, password } = req.body;
+        // routes chỉ start sau khi DB OK
+        app.post("/api/register", async (req, res) => {
+            try {
+                const { username, password } = req.body;
 
-    const user = new User({ username, password });
-    await user.save();
+                const user = new User({ username, password });
+                await user.save();
 
-    res.json({ message: "Register success" });
-});
+                res.json({ message: "Register success" });
+            } catch (err) {
+                res.status(500).json({ message: err.message });
+            }
+        });
 
-// API login
-app.post("/api/login", async (req, res) => {
-    const { username, password } = req.body;
+        app.post("/api/login", async (req, res) => {
+            try {
+                const { username, password } = req.body;
 
-    const user = await User.findOne({ username, password });
+                const user = await User.findOne({ username, password });
 
-    if (!user) {
-        return res.status(400).json({ message: "Invalid account" });
+                if (!user) {
+                    return res.status(400).json({ message: "Invalid account" });
+                }
+
+                res.json({ message: "Login success" });
+            } catch (err) {
+                res.status(500).json({ message: err.message });
+            }
+        });
+
+        app.listen(5000, "0.0.0.0", () => {
+            console.log("Server running at port 5000");
+        });
+
+    } catch (err) {
+        console.error("Fatal error starting server:", err.message);
+        process.exit(1);
     }
+}
 
-    res.json({ message: "Login success" });
-});
-
-// chạy server
-app.listen(5000, () => {
-    console.log("Server running at http://localhost:5000");
-});
+startServer();
