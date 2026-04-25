@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api";
+const API = "/api";
 
 async function register() {
     const username = document.getElementById("username").value;

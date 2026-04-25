@@ -7,6 +7,8 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy file HTML, JS into nginx
 COPY . /usr/share/nginx/html
 
+COPY nginx.conf /etc/nginx/conf.d/default.conf 
+
 # Open port
 EXPOSE 80
 

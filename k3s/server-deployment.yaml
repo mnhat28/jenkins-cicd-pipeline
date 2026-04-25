@@ -19,4 +19,4 @@ spec:
             - containerPort: 5000
           env:
             - name: MONGO_URI
-              value: mongodb://nhat:123456@mongo:27017/web-app?authSource=admin
+              value: mongodb://nhat:123456@mongo.default.svc.cluster.local:27017/web-app?authSource=admin
