@@ -24,7 +24,6 @@ app.post("/api/login", async (req, res) => {
     res.json({ message: "Login success" });
 });
 
-// ✅ Chờ DB connect xong rồi mới start server
 async function startServer() {
     await connectDB();
     app.listen(5000, "0.0.0.0", () => {
